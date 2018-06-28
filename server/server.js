@@ -1,7 +1,4 @@
-// Copyright IBM Corp. 2014,2016. All Rights Reserved.
-// Node module: loopback-example-passport
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
+
 'use strict';
 
 var loopback = require('loopback');
@@ -46,8 +43,8 @@ try {
 
 // Setup the view engine (jade)
 var path = require('path');
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views/pages'));
+app.set('view engine', 'ejs');
 
 // boot scripts mount components like REST API
 boot(app, __dirname);
@@ -88,17 +85,18 @@ for (var s in config) {
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 app.get('/', function(req, res, next) {
-  res.render('pages/index', {user:
+  res.render('home-page', {user:
     req.user,
     url: req.url,
   });
 });
 
 app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
-  res.render('pages/loginProfiles', {
-    user: req.user,
-    url: req.url,
-  });
+  // res.render('pages/loginProfiles', {
+  //   user: req.user,
+  //   url: req.url,
+  // });
+  res.send('/auth/account');
 });
 
 app.get('/local', function(req, res, next) {
@@ -116,7 +114,7 @@ app.get('/ldap', function(req, res, next) {
 });
 
 app.get('/signup', function(req, res, next) {
-  res.render('pages/signup', {
+  res.render('signup', {
     user: req.user,
     url: req.url,
   });
@@ -127,7 +125,8 @@ app.post('/signup', function(req, res, next) {
 
   var newUser = {};
   newUser.email = req.body.email.toLowerCase();
-  newUser.username = req.body.username.trim();
+  newUser.firstName = req.body.firstName;
+  newUser.lastName = req.body.lastName;
   newUser.password = req.body.password;
 
   User.create(newUser, function(err, user) {
@@ -151,7 +150,7 @@ app.post('/signup', function(req, res, next) {
 });
 
 app.get('/login', function(req, res, next) {
-  res.render('pages/login', {
+  res.render('login', {
     user: req.user,
     url: req.url,
   });

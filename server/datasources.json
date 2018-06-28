@@ -1,6 +1,12 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
+  "MongoDB": {
+    "host": "",
+    "port": 0,
+    "url": "",
+    "database": "portal_dev",
+    "password": "",
+    "name": "MongoDB",
+    "user": "",
+    "connector": "mongodb"
   }
 }

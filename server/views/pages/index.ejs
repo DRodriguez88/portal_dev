@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% const ejs = false; %>
+  <% include ../partials/head %>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript">
+    var userFromServer = <%- JSON.stringify(user) %>;
+    </script>
+    <script src="">'src should eventually be bundle.js'</script>
+  <% include ../partials/footer %>
+  </body>
+</html>
+

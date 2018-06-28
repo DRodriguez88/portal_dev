@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% const ejs = true; %>
+  <% include ../partials/head %>
+  <body>
+    <div id="dvt">
+      <% include ../partials/navigation %>
+
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h1 class="display-4">Finish your profile</h1>
+          <% if (messages.error) { %>
+            <p class="alert alert-danger" role="alert"><%= messages.error %></p>
+          <% } %>
+          <form action="/complete_signup" method="post">
+            <div class="form-group">
+              <label class="lead">I am a</label>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input
+                    data-toggle="button"
+                    type="radio"
+                    name="userType"
+                    value="STUDENT"
+                    autocomplete="off"
+                    checked>Student
+                </label>
+                <label class="btn btn-secondary">
+                  <input
+                  type="radio"
+                  name="userType"
+                  value="EMPLOYEE"
+                  autocomplete="off">Employer
+                </label>
+                <label class="btn btn-secondary active">
+                  <input
+                    data-toggle="button"
+                    type="radio"
+                    name="userType"
+                    value="ADMIN"
+                    autocomplete="off"
+                    checked>Admin
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input
+                required
+                name="firstName"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input
+                required
+                name="lastName"
+                class="form-control"
+              />
+            </div>
+            <button class="btn btn-success btn-block" type="submit">Finish Profile</button>
+          </form>
+        </div>
+      </div>
+      </div>
+      <% include ../partials/footer %>
+  </body>
+</html>
